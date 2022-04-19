@@ -11,10 +11,23 @@ const userService = require("./user-service.js");
 
 const app = express();
 
+const allowlist = ['http://localhost:4200']
+const corsOptionsDelegate = function (req, callback) {
+  let corsOptions;
+  if (allowlist.indexOf(req.header('Origin')) !== -1) {
+    corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+  } else {
+    corsOptions = { origin: false } // disable CORS for this request
+  }
+  callback(null, corsOptions) // callback expects two parameters: error and options
+}
+
+app.use(cors(corsOptionsDelegate))
+
 const HTTP_PORT = process.env.PORT || 8080;
 
 app.use(express.json());
-app.use(cors());
+
 
 // JSON Web Token Setup
 var ExtractJwt = passportJWT.ExtractJwt;
