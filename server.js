@@ -95,9 +95,8 @@ app.get("/api/user/favourites", passport.authenticate('jwt', { session: false })
         });
 });
 
-app.put("/api/user/favourites/:id",passport.authenticate('jwt', { session: false }), (req, res) => {
-    console.log(req.user._id)
-    userService.addFavourite(req.user._id, id)
+app.put("/api/user/favourites/:id", (req, res) => {
+    userService.addFavourite(req.body._id, id)
         .then((data) => {
             res.json(data);
         }).catch((msg) => {
@@ -106,7 +105,7 @@ app.put("/api/user/favourites/:id",passport.authenticate('jwt', { session: false
 });
 
 app.delete("/api/user/favourites/:id",passport.authenticate('jwt', { session: false }), (req, res) => {
-    userService.removeFavourite(req.user._id, id)
+    userService.removeFavourite(req.body._id, id)
         .then((data) => {
             res.json(data);
         }).catch((msg) => {
