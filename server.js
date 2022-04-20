@@ -11,7 +11,7 @@ const userService = require("./user-service.js");
 
 const app = express();
 
-const allowlist = ['http://localhost:4200', 'https://music-app-gulnar.netlify.app/']
+const allowlist = ['http://localhost:4200', 'https://music-app-gulnar.netlify.app']
 const corsOptionsDelegate = function (req, callback) {
   let corsOptions;
   if (allowlist.indexOf(req.header('Origin')) !== -1) {
