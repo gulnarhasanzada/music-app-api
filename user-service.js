@@ -98,7 +98,7 @@ module.exports.getFavourites = function (id) {
 }
 
 module.exports.addFavourite = function (id, favId) {
-
+    console.log(id, ' ', favId)
     return new Promise(function (resolve, reject) {
 
         User.findById(id).exec().then(user => {
