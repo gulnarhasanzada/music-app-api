@@ -96,7 +96,7 @@ app.get("/api/user/favourites", passport.authenticate('jwt', { session: false })
 });
 
 app.put("/api/user/favourites/:id",passport.authenticate('jwt', { session: false }), (req, res) => {
-    console.log('aaaa-',req.user._id)
+    console.log('aaaa-',id)
     userService.addFavourite(req.user._id, id)
         .then((data) => {
             res.json(data);
